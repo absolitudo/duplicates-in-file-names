@@ -2,5 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Duplicates in file names/v15
-/.vs/Duplicates in file names/DesignTimeBuild
+/.vs
+[Bb]in/
+[Oo]bj/
