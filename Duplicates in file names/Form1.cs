@@ -30,18 +30,22 @@ namespace Duplicates_in_file_names
 
                 selectedDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
 
-                fileNameListBox.Items.Clear();
-                fileNamesManipulator.SetFileNames(Directory.GetFiles(folderBrowserDialog.SelectedPath));
-
-                foreach (string file in fileNamesManipulator.GetFileNames())
+                fileNameTree.Nodes.Clear();
+                //fileNamesManipulator.SetFileNames(Directory.GetFiles(folderBrowserDialog.SelectedPath));
+                string[] mylist = { "element 1", "the second element", "this is the 3rd" };
+                foreach (string element in mylist)
                 {
-                    fileNameListBox.Items.Add(file);
-                }
+                    string[] childrens = { "a", "b" };
+                    TreeNode node = new TreeNode(element);
 
+                    foreach (string children in childrens)
+                    {
+                        node.Nodes.Add(children);
+                    }
+
+                    fileNameTree.Nodes.Add(node);
+                }
             }
         }
-
-        
-
     }
 }

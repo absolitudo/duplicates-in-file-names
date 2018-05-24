@@ -32,7 +32,7 @@ namespace Duplicates_in_file_names
             this.browseButton = new System.Windows.Forms.Button();
             this.selectedDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.selectedDirectoryLabel = new System.Windows.Forms.Label();
-            this.fileNameListBox = new System.Windows.Forms.ListBox();
+            this.fileNameTree = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // browseButton
@@ -62,20 +62,19 @@ namespace Duplicates_in_file_names
             this.selectedDirectoryLabel.TabIndex = 2;
             this.selectedDirectoryLabel.Text = "Selected directory:";
             // 
-            // fileNameListBox
+            // fileNameTree
             // 
-            this.fileNameListBox.FormattingEnabled = true;
-            this.fileNameListBox.Location = new System.Drawing.Point(15, 35);
-            this.fileNameListBox.Name = "fileNameListBox";
-            this.fileNameListBox.Size = new System.Drawing.Size(569, 433);
-            this.fileNameListBox.TabIndex = 3;
+            this.fileNameTree.Location = new System.Drawing.Point(15, 35);
+            this.fileNameTree.Name = "fileNameTree";
+            this.fileNameTree.Size = new System.Drawing.Size(569, 432);
+            this.fileNameTree.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 479);
-            this.Controls.Add(this.fileNameListBox);
+            this.Controls.Add(this.fileNameTree);
             this.Controls.Add(this.selectedDirectoryLabel);
             this.Controls.Add(this.selectedDirectoryTextBox);
             this.Controls.Add(this.browseButton);
@@ -96,7 +95,7 @@ namespace Duplicates_in_file_names
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.TextBox selectedDirectoryTextBox;
         private System.Windows.Forms.Label selectedDirectoryLabel;
-        private System.Windows.Forms.ListBox fileNameListBox;
+        private System.Windows.Forms.TreeView fileNameTree;
     }
 }
 
