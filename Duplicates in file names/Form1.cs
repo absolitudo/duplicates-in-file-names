@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Duplicates_in_file_names
 {
@@ -15,6 +16,25 @@ namespace Duplicates_in_file_names
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void browseButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                selectedDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
+
+                fileNameListBox.Items.Clear();
+                string[] files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
+
+                foreach (string file in files)
+                {
+                    fileNameListBox.Items.Add(file);
+                }
+            }
         }
     }
 }
