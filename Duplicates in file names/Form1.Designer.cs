@@ -67,7 +67,7 @@ namespace Duplicates_in_file_names
             this.fileNameListBox.FormattingEnabled = true;
             this.fileNameListBox.Location = new System.Drawing.Point(15, 35);
             this.fileNameListBox.Name = "fileNameListBox";
-            this.fileNameListBox.Size = new System.Drawing.Size(569, 407);
+            this.fileNameListBox.Size = new System.Drawing.Size(569, 433);
             this.fileNameListBox.TabIndex = 3;
             // 
             // Form1
