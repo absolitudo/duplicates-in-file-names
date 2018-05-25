@@ -40,9 +40,9 @@ namespace Duplicates_in_file_names
 
             fileNamesManipulator.MatchWords();
 
-            Dictionary<string, string[]> matches = fileNamesManipulator.GetMatches();
+            Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
 
-            foreach (KeyValuePair<string, string[]> match in matches)
+            foreach (KeyValuePair<string, List<string>> match in matches)
             {
                 TreeNode node = new TreeNode(match.Key);
 

@@ -6,7 +6,7 @@ public class FileNamesManipulator
 {
     private string[] fileNames;
     private decimal wordsToMatch = 1;
-    private Dictionary<string, string[]> matches = new Dictionary<string, string[]>();
+    private Dictionary<string, List<string>> matches = new Dictionary<string, List<string>>();
 
     public void SetFileNames(string[] names)
     {
@@ -36,12 +36,39 @@ public class FileNamesManipulator
          * if there is a match for more fileNames, also include the fileName that created to word combination
          */
 
-        foreach (string fileName in fileNames)
+        for (int i = 0; i < fileNames.Length; i += 1)
         {
+            string fileName = fileNames[i];
+
             string[] words = fileName.Split(' ');
             List<string> wordCombinations = this.CreateWordCombinations(words);
-        }
 
+            foreach (string wordCombination in wordCombinations)
+            {
+                if (!matches.ContainsKey(wordCombination))
+                {
+                    List<string> duplicateFiles = new List<string>();
+
+                    for (int j = i + 1; j < fileNames.Length; j += 1)
+                    {
+                        if (fileNames[j].Contains(wordCombination))
+                        {
+                            duplicateFiles.Add(fileNames[j]);
+                        }
+
+                    }
+
+                    if (duplicateFiles.Count > 0)
+                    {
+                        duplicateFiles.Add(fileNames[i]);
+                        matches.Add(wordCombination, duplicateFiles);
+                    }
+
+                }
+
+            }
+           
+        }
 
     }
 
@@ -77,12 +104,13 @@ public class FileNamesManipulator
             {
                 wordCombinations.Add(word);
             }
+
         }
 
         return wordCombinations;
     }
 
-    public Dictionary<string, string[]> GetMatches()
+    public Dictionary<string, List<string>> GetMatches()
     {
         return this.matches;
     }
