@@ -38,20 +38,21 @@ namespace Duplicates_in_file_names
         {
             fileNameTree.Nodes.Clear();
 
-            /*
-            foreach (string element in mylist)
-            {
-                string[] childrens = { "a", "b" };
-                TreeNode node = new TreeNode(element);
+            fileNamesManipulator.MatchWords();
 
-                foreach (string children in childrens)
+            Dictionary<string, string[]> matches = fileNamesManipulator.GetMatches();
+
+            foreach (KeyValuePair<string, string[]> match in matches)
+            {
+                TreeNode node = new TreeNode(match.Key);
+
+                foreach (string fileName in match.Value)
                 {
-                    node.Nodes.Add(children);
+                    node.Nodes.Add(fileName);
                 }
 
                 fileNameTree.Nodes.Add(node);
             }
-            */
 
         }
 

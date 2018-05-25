@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 public class FileNamesManipulator
 {
     private string[] fileNames;
     private decimal wordsToMatch = 1;
-
+    private Dictionary<string, string[]> matches = new Dictionary<string, string[]>();
 
     public void SetFileNames(string[] names)
     {
@@ -21,8 +22,19 @@ public class FileNamesManipulator
         return fileNames;
     }
 
-    internal void SetWordsToMatch(decimal value)
+    public void SetWordsToMatch(decimal value)
     {
         wordsToMatch = value;
     }
+
+    public void MatchWords()
+    {
+        // do some algorithm stuff
+    }
+
+    public Dictionary<string, string[]> GetMatches()
+    {
+        return matches;
+    }
+
 }
