@@ -44,17 +44,24 @@ namespace Duplicates_in_file_names
 
                 Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
 
-                foreach (KeyValuePair<string, List<string>> match in matches)
+                if (matches.Count > 0)
                 {
-                    TreeNode node = new TreeNode(match.Key);
-
-                    foreach (string fileName in match.Value)
+                    foreach (KeyValuePair<string, List<string>> match in matches)
                     {
-                        node.Nodes.Add(fileName);
-                    }
+                        TreeNode node = new TreeNode(match.Key);
 
-                    fileNameTree.Nodes.Add(node);
+                        foreach (string fileName in match.Value)
+                        {
+                            node.Nodes.Add(fileName);
+                        }
+
+                        fileNameTree.Nodes.Add(node);
+                    }
+                } else
+                {
+                    fileNameTree.Nodes.Add("No duplicates have been found.");
                 }
+
             } else
             {
                 fileNameTree.Nodes.Add("Select a directory");
