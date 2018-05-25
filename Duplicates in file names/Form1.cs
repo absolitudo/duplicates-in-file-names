@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Duplicates_in_file_names
@@ -22,7 +23,6 @@ namespace Duplicates_in_file_names
                 selectedDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
                 fileNamesManipulator.SetSelectedPath(folderBrowserDialog.SelectedPath);
             }
-
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -31,33 +31,17 @@ namespace Duplicates_in_file_names
 
             if (fileNamesManipulator.IsPathSelected())
             {
-                fileNamesManipulator.Refresh();
-                fileNamesManipulator.MatchWords();
-
-                Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
-
-                if (matches.Count > 0)
+                if (searchDuplicatesBackgroundWorker.IsBusy != true)
                 {
-                    foreach (KeyValuePair<string, List<string>> match in matches)
-                    {
-                        TreeNode node = new TreeNode(match.Key);
-
-                        foreach (string fileName in match.Value)
-                        {
-                            node.Nodes.Add(fileName);
-                        }
-
-                        fileNameTree.Nodes.Add(node);
-                    }
-                } else
-                {
-                    fileNameTree.Nodes.Add("No duplicates have been found.");
+                    searchDuplicatesBackgroundWorker.RunWorkerAsync();
                 }
 
-            } else
+            }
+            else
             {
                 fileNameTree.Nodes.Add("Select a directory");
             }
+            
 
         }
 
@@ -71,6 +55,37 @@ namespace Duplicates_in_file_names
         {
             fileNamesManipulator.SetCaseSensitivity(caseSensitiveCheckBox.Checked);
         }
+
+        private void searchDuplicatesBackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            fileNamesManipulator.Refresh();
+            fileNamesManipulator.MatchWords();
+        }
+
+        private void searchDuplicatesBackgroundWorker__RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
+
+            if (matches.Count > 0)
+            {
+                foreach (KeyValuePair<string, List<string>> match in matches)
+                {
+                    TreeNode node = new TreeNode(match.Key);
+
+                    foreach (string fileName in match.Value)
+                    {
+                        node.Nodes.Add(fileName);
+                    }
+
+                    fileNameTree.Nodes.Add(node);
+                }
+            }
+            else
+            {
+                fileNameTree.Nodes.Add("No duplicates have been found.");
+            }
+        }
+        
     }
 
 }

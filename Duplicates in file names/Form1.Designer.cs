@@ -37,6 +37,7 @@ namespace Duplicates_in_file_names
             this.wordsToSearchNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wordsToSearchLabel = new System.Windows.Forms.Label();
             this.caseSensitiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchDuplicatesBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.wordsToSearchNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +129,12 @@ namespace Duplicates_in_file_names
             this.caseSensitiveCheckBox.UseVisualStyleBackColor = true;
             this.caseSensitiveCheckBox.CheckedChanged += new System.EventHandler(this.caseSensitiveCheckBox_CheckedChanged);
             // 
+            // searchDuplicatesBackgroundWorker
+            // 
+            this.searchDuplicatesBackgroundWorker.WorkerReportsProgress = true;
+            this.searchDuplicatesBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.searchDuplicatesBackgroundWorker_DoWork);
+            this.searchDuplicatesBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.searchDuplicatesBackgroundWorker__RunWorkerCompleted);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +171,7 @@ namespace Duplicates_in_file_names
         private System.Windows.Forms.NumericUpDown wordsToSearchNumericUpDown;
         private System.Windows.Forms.Label wordsToSearchLabel;
         private System.Windows.Forms.CheckBox caseSensitiveCheckBox;
+        private System.ComponentModel.BackgroundWorker searchDuplicatesBackgroundWorker;
     }
 }
 
