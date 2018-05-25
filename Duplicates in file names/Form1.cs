@@ -28,8 +28,7 @@ namespace Duplicates_in_file_names
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 selectedDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
-
-                fileNamesManipulator.SetFileNames(Directory.GetFiles(folderBrowserDialog.SelectedPath));
+                fileNamesManipulator.SetSelectedPath(folderBrowserDialog.SelectedPath);
             }
 
         }
@@ -38,20 +37,27 @@ namespace Duplicates_in_file_names
         {
             fileNameTree.Nodes.Clear();
 
-            fileNamesManipulator.MatchWords();
-
-            Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
-
-            foreach (KeyValuePair<string, List<string>> match in matches)
+            if (fileNamesManipulator.IsPathSelected())
             {
-                TreeNode node = new TreeNode(match.Key);
+                fileNamesManipulator.Refresh();
+                fileNamesManipulator.MatchWords();
 
-                foreach (string fileName in match.Value)
+                Dictionary<string, List<string>> matches = fileNamesManipulator.GetMatches();
+
+                foreach (KeyValuePair<string, List<string>> match in matches)
                 {
-                    node.Nodes.Add(fileName);
-                }
+                    TreeNode node = new TreeNode(match.Key);
 
-                fileNameTree.Nodes.Add(node);
+                    foreach (string fileName in match.Value)
+                    {
+                        node.Nodes.Add(fileName);
+                    }
+
+                    fileNameTree.Nodes.Add(node);
+                }
+            } else
+            {
+                fileNameTree.Nodes.Add("Select a directory");
             }
 
         }
@@ -61,6 +67,7 @@ namespace Duplicates_in_file_names
             fileNamesManipulator.SetWordsToMatch(wordsToSearchNumericUpDown.Value);
 
         }
+
     }
 
 }

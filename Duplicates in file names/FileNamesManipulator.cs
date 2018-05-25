@@ -6,9 +6,31 @@ public class FileNamesManipulator
 {
     private string[] fileNames;
     private decimal wordsToMatch = 1;
+    private string selectedPath;
     private Dictionary<string, List<string>> matches = new Dictionary<string, List<string>>();
 
-    public void SetFileNames(string[] names)
+    public void Refresh()
+    {
+        this.matches.Clear();
+        this.SetFileNames(Directory.GetFiles(this.selectedPath));
+    }
+
+
+    public void SetSelectedPath(string path)
+    {
+        this.selectedPath = path;
+    }
+
+    public Boolean IsPathSelected()
+    {
+        if (!string.IsNullOrEmpty(this.selectedPath))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void SetFileNames(string[] names)
     {
         for(int index = 0; index < names.Length; index += 1)
         {
@@ -29,12 +51,6 @@ public class FileNamesManipulator
 
     public void MatchWords()
     {
-        /* loop fileNames
-         * based on the words to match create all to possible word combinations
-         * put the word combination into the dictionary value
-         * key is going to be the other fileNames that match this particular word combination
-         * if there is a match for more fileNames, also include the fileName that created to word combination
-         */
 
         for (int i = 0; i < fileNames.Length; i += 1)
         {
