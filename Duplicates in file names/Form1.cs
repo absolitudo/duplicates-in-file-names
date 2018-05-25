@@ -75,6 +75,10 @@ namespace Duplicates_in_file_names
 
         }
 
+        private void caseSensitiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            fileNamesManipulator.SetCaseSensitivity(caseSensitiveCheckBox.Checked);
+        }
     }
 
 }

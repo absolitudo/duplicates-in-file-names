@@ -36,6 +36,7 @@ namespace Duplicates_in_file_names
             this.searchButton = new System.Windows.Forms.Button();
             this.wordsToSearchNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wordsToSearchLabel = new System.Windows.Forms.Label();
+            this.caseSensitiveCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.wordsToSearchNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,11 +116,24 @@ namespace Duplicates_in_file_names
             this.wordsToSearchLabel.TabIndex = 9;
             this.wordsToSearchLabel.Text = "Words to match:";
             // 
+            // caseSensitiveCheckBox
+            // 
+            this.caseSensitiveCheckBox.AutoSize = true;
+            this.caseSensitiveCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.caseSensitiveCheckBox.Location = new System.Drawing.Point(590, 385);
+            this.caseSensitiveCheckBox.Name = "caseSensitiveCheckBox";
+            this.caseSensitiveCheckBox.Size = new System.Drawing.Size(97, 17);
+            this.caseSensitiveCheckBox.TabIndex = 10;
+            this.caseSensitiveCheckBox.Text = "Case sensitive:";
+            this.caseSensitiveCheckBox.UseVisualStyleBackColor = true;
+            this.caseSensitiveCheckBox.CheckedChanged += new System.EventHandler(this.caseSensitiveCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 479);
+            this.Controls.Add(this.caseSensitiveCheckBox);
             this.Controls.Add(this.wordsToSearchLabel);
             this.Controls.Add(this.wordsToSearchNumericUpDown);
             this.Controls.Add(this.searchButton);
@@ -149,6 +163,7 @@ namespace Duplicates_in_file_names
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.NumericUpDown wordsToSearchNumericUpDown;
         private System.Windows.Forms.Label wordsToSearchLabel;
+        private System.Windows.Forms.CheckBox caseSensitiveCheckBox;
     }
 }
 

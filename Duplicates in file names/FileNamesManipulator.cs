@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 public class FileNamesManipulator
 {
     private string[] fileNames;
     private decimal wordsToMatch = 1;
     private string selectedPath;
+    private Boolean caseSensitive = false;
     private Dictionary<string, List<string>> matches = new Dictionary<string, List<string>>();
 
     public void Refresh()
@@ -67,7 +69,7 @@ public class FileNamesManipulator
 
                     for (int j = i + 1; j < fileNames.Length; j += 1)
                     {
-                        if (fileNames[j].Contains(wordCombination))
+                        if (this.IsContained(fileNames[j], wordCombination))
                         {
                             duplicateFiles.Add(fileNames[j]);
                         }
@@ -129,6 +131,22 @@ public class FileNamesManipulator
     public Dictionary<string, List<string>> GetMatches()
     {
         return this.matches;
+    }
+
+    public void SetCaseSensitivity(Boolean isCaseSensitive)
+    {
+        this.caseSensitive = isCaseSensitive;
+    }
+
+    private Boolean IsContained(string fileName, string wordCombination)
+    {
+        if (this.caseSensitive)
+        {
+            return fileName.Contains(wordCombination) ? true : false;
+        } else
+        {
+            return fileName.ToLower().Contains(wordCombination.ToLower()) ? true : false;
+        }
     }
 
 }
