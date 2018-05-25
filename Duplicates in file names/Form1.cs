@@ -27,25 +27,39 @@ namespace Duplicates_in_file_names
             
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-
                 selectedDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
 
-                fileNameTree.Nodes.Clear();
-                //fileNamesManipulator.SetFileNames(Directory.GetFiles(folderBrowserDialog.SelectedPath));
-                string[] mylist = { "element 1", "the second element", "this is the 3rd" };
-                foreach (string element in mylist)
-                {
-                    string[] childrens = { "a", "b" };
-                    TreeNode node = new TreeNode(element);
-
-                    foreach (string children in childrens)
-                    {
-                        node.Nodes.Add(children);
-                    }
-
-                    fileNameTree.Nodes.Add(node);
-                }
+                fileNamesManipulator.SetFileNames(Directory.GetFiles(folderBrowserDialog.SelectedPath));
             }
+
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            fileNameTree.Nodes.Clear();
+
+            /*
+            foreach (string element in mylist)
+            {
+                string[] childrens = { "a", "b" };
+                TreeNode node = new TreeNode(element);
+
+                foreach (string children in childrens)
+                {
+                    node.Nodes.Add(children);
+                }
+
+                fileNameTree.Nodes.Add(node);
+            }
+            */
+
+        }
+
+        private void wordsToSearchNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            fileNamesManipulator.SetWordsToMatch(wordsToSearchNumericUpDown.Value);
+
         }
     }
+
 }

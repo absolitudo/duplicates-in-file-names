@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 public class FileNamesManipulator
 {
     private string[] fileNames;
+    private decimal wordsToMatch = 1;
+
 
     public void SetFileNames(string[] names)
     {
@@ -18,4 +21,8 @@ public class FileNamesManipulator
         return fileNames;
     }
 
+    internal void SetWordsToMatch(decimal value)
+    {
+        wordsToMatch = value;
+    }
 }

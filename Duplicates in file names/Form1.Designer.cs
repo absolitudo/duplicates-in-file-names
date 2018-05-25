@@ -33,6 +33,10 @@ namespace Duplicates_in_file_names
             this.selectedDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.selectedDirectoryLabel = new System.Windows.Forms.Label();
             this.fileNameTree = new System.Windows.Forms.TreeView();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.wordsToSearchNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.wordsToSearchLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.wordsToSearchNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // browseButton
@@ -69,21 +73,67 @@ namespace Duplicates_in_file_names
             this.fileNameTree.Size = new System.Drawing.Size(569, 432);
             this.fileNameTree.TabIndex = 5;
             // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(681, 444);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 6;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // wordsToSearchNumericUpDown
+            // 
+            this.wordsToSearchNumericUpDown.Location = new System.Drawing.Point(681, 418);
+            this.wordsToSearchNumericUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.wordsToSearchNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.wordsToSearchNumericUpDown.Name = "wordsToSearchNumericUpDown";
+            this.wordsToSearchNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.wordsToSearchNumericUpDown.TabIndex = 8;
+            this.wordsToSearchNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.wordsToSearchNumericUpDown.ValueChanged += new System.EventHandler(this.wordsToSearchNumericUpDown_ValueChanged);
+            // 
+            // wordsToSearchLabel
+            // 
+            this.wordsToSearchLabel.AutoSize = true;
+            this.wordsToSearchLabel.Location = new System.Drawing.Point(590, 420);
+            this.wordsToSearchLabel.Name = "wordsToSearchLabel";
+            this.wordsToSearchLabel.Size = new System.Drawing.Size(85, 13);
+            this.wordsToSearchLabel.TabIndex = 9;
+            this.wordsToSearchLabel.Text = "Words to match:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 479);
+            this.ClientSize = new System.Drawing.Size(768, 479);
+            this.Controls.Add(this.wordsToSearchLabel);
+            this.Controls.Add(this.wordsToSearchNumericUpDown);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.fileNameTree);
             this.Controls.Add(this.selectedDirectoryLabel);
             this.Controls.Add(this.selectedDirectoryTextBox);
             this.Controls.Add(this.browseButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(842, 517);
-            this.MinimumSize = new System.Drawing.Size(842, 517);
+            this.MaximumSize = new System.Drawing.Size(784, 517);
+            this.MinimumSize = new System.Drawing.Size(784, 517);
             this.Name = "Form1";
             this.Text = "Duplicates in file names";
+            ((System.ComponentModel.ISupportInitialize)(this.wordsToSearchNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,6 +146,9 @@ namespace Duplicates_in_file_names
         private System.Windows.Forms.TextBox selectedDirectoryTextBox;
         private System.Windows.Forms.Label selectedDirectoryLabel;
         private System.Windows.Forms.TreeView fileNameTree;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.NumericUpDown wordsToSearchNumericUpDown;
+        private System.Windows.Forms.Label wordsToSearchLabel;
     }
 }
 
